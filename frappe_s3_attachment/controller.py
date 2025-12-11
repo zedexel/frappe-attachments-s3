@@ -242,6 +242,17 @@ def generate_file(key=None, file_name=None):
         frappe.local.response['body'] = "Key not found."
     return
 
+@frappe.whitelist()
+def generate_file_url(key=None, file_name=None):
+    """
+    Function to generate file url from s3 for Frontend Application.
+    """
+    if key:
+        s3_upload = S3Operations()
+        signed_url = s3_upload.get_url(key, file_name)
+        frappe.local.response['url'] = signed_url
+    else:
+        return "Key not found."
 
 def upload_existing_files_s3(name):
     """
