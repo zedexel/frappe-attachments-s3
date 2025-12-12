@@ -28,6 +28,13 @@ class S3Operations(object):
             'S3 File Attachment',
             'S3 File Attachment',
         )
+
+        """
+        Custom logic to accomodate virtual hosted style bucket names.
+        """
+        endpoint_url = None
+        if self.s3_settings_doc.region_name == "me-central-1":
+            endpoint_url = "https://s3.me-central-1.amazonaws.com"
         if (
             self.s3_settings_doc.aws_key and
             self.s3_settings_doc.aws_secret
@@ -37,12 +44,14 @@ class S3Operations(object):
                 aws_access_key_id=self.s3_settings_doc.aws_key,
                 aws_secret_access_key=self.s3_settings_doc.aws_secret,
                 region_name=self.s3_settings_doc.region_name,
+                endpoint_url=endpoint_url,
                 config=Config(signature_version='s3v4')
             )
         else:
             self.S3_CLIENT = boto3.client(
                 's3',
                 region_name=self.s3_settings_doc.region_name,
+                endpoint_url=endpoint_url,
                 config=Config(signature_version='s3v4')
             )
         self.BUCKET = self.s3_settings_doc.bucket_name
