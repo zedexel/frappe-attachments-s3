@@ -1,0 +1,58 @@
+[project]
+name = "frappe_s3_attachment"
+authors = [
+    { name = "Frappe", email = "ramesh.ravi@zerodha.com" },
+    { name = "ZedeXeL", email = "adeeb@zedexel.com" },
+]
+description = "Frappe app to make file upload to S3 through attach file option."
+readme = "README.md"
+requires-python = ">=3.10"
+dynamic = ["version"]
+dependencies = [
+    "python-magic==0.4.18",
+]
+
+[project.urls]
+Repository = "https://github.com/zedexel/frappe-attachments-s3.git"
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.bench.dev-dependencies]
+
+[tool.ruff]
+line-length = 90
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "F",
+    "E",
+    "W",
+    "I",
+    "UP",
+    "B",
+    "RUF",
+]
+ignore = [
+    "B017",
+    "B018",
+    "B023",
+    "B904",
+    "E101",
+    "E402",
+    "E501",
+    "E741",
+    "F401",
+    "F403",
+    "F405",
+    "F722",
+    "W191",
+]
+typing-modules = ["frappe.types.DF"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "tab"
+docstring-code-format = true
