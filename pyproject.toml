@@ -19,6 +19,9 @@ Repository = "https://github.com/zedexel/frappe-attachments-s3.git"
 requires = ["flit_core >=3.4,<4"]
 build-backend = "flit_core.buildapi"
 
+[tool.bench.frappe-dependencies]
+frappe = ">=15.0.0,<16.0.0"
+
 [tool.bench.dev-dependencies]
 
 [tool.ruff]
